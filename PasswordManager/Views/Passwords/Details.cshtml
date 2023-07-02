@@ -3,9 +3,13 @@
 }
 
 @model PasswordManager.Models.Password
-@using PasswordManager.Models
 
 <h2>@Html.DisplayFor(model => model.Site)</h2>
 <h3>@Html.DisplayFor(model => model.SiteUsername)</h3>
 <h3>@Html.DisplayFor(model => model.SitePassword)</h3>
 <h3>@Html.DisplayFor(model => model.SiteEmail)</h3>
+
+
+<p>@Html.ActionLink("Back to List", "Index")</p>
+<p>@Html.ActionLink("Edit entry", "Edit", new {id = Model.PasswordId})</p>
+<p>@Html.ActionLink("Delete entry", "Delete", new {id = Model.PasswordId})</p>
