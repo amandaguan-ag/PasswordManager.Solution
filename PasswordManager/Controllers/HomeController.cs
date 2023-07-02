@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PasswordManager.Models;
 using System.Collections.Generic;
 using System.Linq;
-// using Microsoft.AspNetCore.Identity;
-
 
 namespace PasswordManager.Controllers
 {
@@ -21,11 +17,9 @@ namespace PasswordManager.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            List<Password> model = _db.Passwords.ToList();
-
-            // Password[] Passwords = _db.Passwords.ToArray();
-            // Dictionary<string, object[]> model = new Dictionary<string, object[]>();
-            // model.Add("Passwords", Passwords);
+            Password[] passwords = _db.Passwords.ToArray();
+            Dictionary<string, object[]> model = new Dictionary<string, object[]>();
+            model.Add("passwords", passwords);
             return View(model);
         }
     }
