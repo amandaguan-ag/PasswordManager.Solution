@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PasswordManager.Models.Password;
+
+<h1>Add a new account</h1>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Site)
+  @Html.TextBoxFor(model => model.Site)
+
+  @Html.LabelFor(model => model.SiteEmail)
+  @Html.TextBoxFor(model => model.SiteEmail)
+
+  @Html.LabelFor(model => model.SiteUsername)
+  @Html.TextBoxFor(model => model.SiteUsername)
+
+  @Html.LabelFor(model => model.SitePassword)
+  @Html.TextBoxFor(model => model.SitePassword)
+  <input type="submit" value="Add an new account" />
+}
+<p>@Html.ActionLink("Show all passwords", "Index")</p>

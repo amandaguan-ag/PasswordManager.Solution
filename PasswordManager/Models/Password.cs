@@ -7,7 +7,8 @@ namespace PasswordManager.Models
   {
     public int PasswordId { get; set; }
     public string Site { get; set; }
-    public string Username { get; set; }
+    public string SiteUsername { get; set; }
+    public string SiteEmail { get; set; }
     public string SitePassword { get; set; }
   }
 }

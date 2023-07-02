@@ -1,12 +1,11 @@
-<!-- @{
+@{
   Layout = "_Layout";
 }
 
-@using PasswordManager.Models
 @model PasswordManager.Models.Password
+@using PasswordManager.Models
 
-
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Password or Password", "Edit", new { id = Model.PasswordId })</p>
-<p>@Html.ActionLink("Add a Tag", "AddTag", new { id = Model.PasswordId })</p>
-<p>@Html.ActionLink("Delete Password", "Delete", new { id = Model.PasswordId })</p> -->
+<h2>@Html.DisplayFor(model => model.Site)</h2>
+<h3>@Html.DisplayFor(model => model.SiteUsername)</h3>
+<h3>@Html.DisplayFor(model => model.SitePassword)</h3>
+<h3>@Html.DisplayFor(model => model.SiteEmail)</h3>
