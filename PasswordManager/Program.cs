@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PasswordManager.Models;
-using Microsoft.AspNetCore.Identity;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 
 namespace PasswordManager
 {
@@ -23,11 +24,6 @@ namespace PasswordManager
                         )
                       );
 
-
-      builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<PierresTreatsContext>()
-                .AddDefaultTokenProviders();
-
       WebApplication app = builder.Build();
 
       // app.UseDeveloperExceptionPage();
@@ -35,9 +31,6 @@ namespace PasswordManager
       app.UseStaticFiles();
 
       app.UseRouting();
-
-      app.UseAuthentication(); 
-      app.UseAuthorization();
 
       app.MapControllerRoute(
           name: "default",

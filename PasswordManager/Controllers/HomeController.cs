@@ -1,31 +1,32 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using PasswordManager.Models;
+using System.Collections.Generic;
+using System.Linq;
+// using Microsoft.AspNetCore.Identity;
 
-namespace PasswordManager.Controllers;
 
-public class HomeController : Controller
+namespace PasswordManager.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly PasswordManagerContext _db;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(PasswordManagerContext db)
+        {
+            _db = db;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        [HttpGet("/")]
+        public ActionResult Index()
+        {
+            List<Password> model = _db.Passwords.ToList();
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // Password[] Passwords = _db.Passwords.ToArray();
+            // Dictionary<string, object[]> model = new Dictionary<string, object[]>();
+            // model.Add("Passwords", Passwords);
+            return View(model);
+        }
     }
 }
