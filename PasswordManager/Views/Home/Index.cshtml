@@ -4,14 +4,14 @@
 
 @using PasswordManager.Models;
 
-<h1>Welcome to the Password Manager!</h1>
+<h1>Welcome to your Password Manager!</h1>
 
 <hr>
 
 <h4>Passwords</h4>
 @if (Model["passwords"].Length == 0)
 {
-  <p>No passwords have been added yet!</p>
+  <p>You have not added any passwords yet!</p>
 }
 <ul>
   @foreach (Password password in Model["passwords"])

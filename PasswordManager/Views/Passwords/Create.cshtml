@@ -10,14 +10,34 @@
   @Html.LabelFor(model => model.Site)
   @Html.TextBoxFor(model => model.Site)
 
-  @Html.LabelFor(model => model.SiteEmail)
+    @Html.LabelFor(model => model.SiteEmail)
   @Html.TextBoxFor(model => model.SiteEmail)
 
   @Html.LabelFor(model => model.SiteUsername)
   @Html.TextBoxFor(model => model.SiteUsername)
 
   @Html.LabelFor(model => model.SitePassword)
-  @Html.TextBoxFor(model => model.SitePassword)
+  @Html.TextBoxFor(model => model.SitePassword, new { id = "passwordBox" })
+  
+  <button id="generateBtn" type="button">Generate Password</button>
+
   <input type="submit" value="Add an new account" />
 }
 <p>@Html.ActionLink("Show all passwords", "Index")</p>
+
+<script>
+document.getElementById("generateBtn").addEventListener("click", function() {
+  var password = generatePassword(12);
+  document.getElementById("passwordBox").value = password;
+});
+
+function generatePassword(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+</script>

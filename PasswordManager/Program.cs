@@ -23,9 +23,9 @@ namespace PasswordManager
                               )
                             );
 
-            // builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-            //           .AddEntityFrameworkStores<PasswordManagerContext>()
-            //           .AddDefaultTokenProviders();
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                      .AddEntityFrameworkStores<PasswordManagerContext>()
+                      .AddDefaultTokenProviders();
 
             WebApplication app = builder.Build();
 

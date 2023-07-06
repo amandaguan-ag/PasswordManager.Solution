@@ -1,9 +1,9 @@
-// using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace PasswordManager.Models
 {
-  public class PasswordManagerContext : DbContext
+  public class PasswordManagerContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<Password> Passwords { get; set; }
 
