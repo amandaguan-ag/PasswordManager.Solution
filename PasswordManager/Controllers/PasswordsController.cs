@@ -21,6 +21,7 @@ namespace PasswordManager.Controllers
             _db = db;
         }
 
+        [HttpGet("/")]
         public ActionResult Index()
         {
             List<Password> model = _db.Passwords.ToList();
