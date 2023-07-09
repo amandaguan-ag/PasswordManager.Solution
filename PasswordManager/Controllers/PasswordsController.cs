@@ -24,14 +24,22 @@ namespace PasswordManager.Controllers
         }
 
         [HttpGet("/")]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-          var currentUserId = _userManager.GetUserId(User);
-          List<Password> model = _db.Passwords
-            .Where(password => password.UserId == currentUserId)
-            .ToList();
-          return View(model);
-        }
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            ApplicationUser currentUser = await _userManager.FindByIdAsync(userId);
+            var currentUserId = _userManager.GetUserId(User);
+            List<Password> model = _db.Passwords
+                .Where(password => password.UserId == currentUserId)
+                .ToList();
+
+            if (currentUser != null)
+            {
+                return View(model);
+            }
+    
+            return RedirectToAction("AccessDenied"); // Or any other action you want to redirect to
+}
 
         public ActionResult Create()
         {
