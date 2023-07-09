@@ -1,5 +1,6 @@
-
-<h2>Secret Squirrel</h2>
+@{
+  Layout = "_Layout";
+}
 <hr />
 @if (User.Identity.IsAuthenticated)
 {
@@ -7,11 +8,15 @@
   @using (Html.BeginForm("LogOff", "Account"))
   {
     <input type="submit" class="btn btn-primary" value="Log out" />
+    <p>@Html.ActionLink("Home", "Index", "Passwords")</p>
   }
 }
 else
 {
-  <p>@Html.ActionLink("Register", "Register")</p>
-  <p>@Html.ActionLink("Log in", "Login")</p>
+  <div class="loginIndexBtn">
+    <p class="loginIndexBtnSel">@Html.ActionLink("Home", "Index", "Passwords")</p>
+    <p class="loginIndexBtnSel">@Html.ActionLink("Register", "Register")</p>
+    <p class="loginIndexBtnSel">@Html.ActionLink("Log in", "Login")</p>
+
+  </div>
 }
-<p>@Html.ActionLink("Home", "Index", "Passwords")</p>
