@@ -4,6 +4,8 @@
 
 @model PasswordManager.Models.Password
 
+<p>@Html.ActionLink("Home", "Index", "Passwords") | @Html.ActionLink("Logout", "Index", "Account")</p>
+
 <h2>@Html.DisplayFor(model => model.Site)</h2>
 <h3>@Html.DisplayFor(model => model.SiteUsername)</h3>
 <h3>@Html.DisplayFor(model => model.SitePassword)</h3>

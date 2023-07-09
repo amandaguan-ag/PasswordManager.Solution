@@ -3,24 +3,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PasswordManager.Models
 {
-  public class PasswordManagerContext : IdentityDbContext<ApplicationUser>
-  {
-    public DbSet<Password> Passwords { get; set; }
+    public class PasswordManagerContext : IdentityDbContext<ApplicationUser>
+    {
+        public DbSet<Password> Passwords { get; set; }
 
-    public PasswordManagerContext(DbContextOptions options) : base(options) { }
-    
-    // protected override void OnModelCreating(ModelBuilder modelBuilder)
-    //     {
-    //         base.OnModelCreating(modelBuilder);
+        public PasswordManagerContext(DbContextOptions options) : base(options) { }
 
-    //         modelBuilder.Entity<Password>(entity =>
-    //         {
-    //             entity.Property(e => e.SiteEmail)
-    //                   .IsRequired()
-    //                   .HasMaxLength(256)
-    //                   .HasAnnotation("RegularExpression", "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")
-    //                   .HasAnnotation("MaxLength", 256);
-    //         });
-    //     }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(u => u.Passwords)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId);
+        }
     }
 }

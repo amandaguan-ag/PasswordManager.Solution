@@ -15,17 +15,22 @@ namespace PasswordManager.Controllers
     public class PasswordsController : Controller
     {
         private readonly PasswordManagerContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PasswordsController(PasswordManagerContext db)
+        public PasswordsController(UserManager<ApplicationUser> userManager, PasswordManagerContext db)
         {
+            _userManager = userManager;
             _db = db;
         }
 
         [HttpGet("/")]
         public ActionResult Index()
         {
-            List<Password> model = _db.Passwords.ToList();
-            return View(model);
+          var currentUserId = _userManager.GetUserId(User);
+          List<Password> model = _db.Passwords
+            .Where(password => password.UserId == currentUserId)
+            .ToList();
+          return View(model);
         }
 
         public ActionResult Create()
@@ -33,13 +38,26 @@ namespace PasswordManager.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Create(Password password)
-        {
-            _db.Passwords.Add(password);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+     [HttpPost]
+    public async Task<ActionResult> Create(Password password)
+    {
+      if (ModelState.IsValid)
+      {
+        // Get the current user's Id
+        var userId = _userManager.GetUserId(User);
+        
+        // Set the UserId property on the password record
+        password.UserId = userId;
+        
+        // Add the password record to the database
+        _db.Passwords.Add(password);
+        await _db.SaveChangesAsync();
+
+        return RedirectToAction("Index");
+      }
+      
+      return View(password);
+    }
 
         public ActionResult Details(int id)
         {

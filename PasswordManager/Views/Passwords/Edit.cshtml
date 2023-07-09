@@ -1,4 +1,10 @@
+@{
+  Layout = "_Layout";
+}
+
 @model PasswordManager.Models.Password
+
+<p>@Html.ActionLink("Home", "Index", "Passwords") | @Html.ActionLink("Logout", "Index", "Account")</p>
 
 @using(Html.BeginForm())
 {

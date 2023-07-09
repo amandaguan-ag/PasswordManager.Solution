@@ -4,13 +4,15 @@
 
 @model PasswordManager.Models.Password;
 
+<p>@Html.ActionLink("Home", "Index", "Passwords") | @Html.ActionLink("Logout", "Index", "Account")</p>
+
 <h1>Add a new account</h1>
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Site)
   @Html.TextBoxFor(model => model.Site)
 
-    @Html.LabelFor(model => model.SiteEmail)
+  @Html.LabelFor(model => model.SiteEmail)
   @Html.TextBoxFor(model => model.SiteEmail)
 
   @Html.LabelFor(model => model.SiteUsername)
@@ -23,6 +25,7 @@
 
   <input type="submit" value="Add an new account" />
 }
+
 <p>@Html.ActionLink("Show all passwords", "Index")</p>
 
 <script>
