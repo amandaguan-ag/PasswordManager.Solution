@@ -42,6 +42,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100px;
+  margin-left: -180px;
 }
 
 h3 {
@@ -50,6 +51,7 @@ h3 {
 
 .loginLinks p {
   margin-top: 5px 0;
+  margin-left: 70px;
 }
 
 /* Login Index Page */
@@ -65,4 +67,8 @@ h3 {
   width: 50%;
   margin: 20px;
   text-align: center;
+}
+
+.form-group {
+  margin-top: 10px;
 }

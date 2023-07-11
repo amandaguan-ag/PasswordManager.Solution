@@ -5,13 +5,40 @@
 @model PasswordManager.Models.Password
 
 <p>@Html.ActionLink("Home", "Index", "Passwords") | @Html.ActionLink("Logout", "Index", "Account")</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Website</th>
+      <th scope="col">Username</th>
+      <th scope="col">Password</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@Html.DisplayFor(model => model.Site)</td>
+      <td>@Html.DisplayFor(model => model.SiteUsername)</td>
+      <td>@Html.DisplayFor(model => model.SitePassword)</td>
+      <td>@Html.DisplayFor(model => model.SiteEmail)</td>
+    </tr>
+  </tbody>
+</table>
 
-<h2>@Html.DisplayFor(model => model.Site)</h2>
-<h3>@Html.DisplayFor(model => model.SiteUsername)</h3>
-<h3>@Html.DisplayFor(model => model.SitePassword)</h3>
-<h3>@Html.DisplayFor(model => model.SiteEmail)</h3>
+<div class="btn-group">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Edit
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">@Html.ActionLink("Edit entry", "Edit", new {id = Model.PasswordId})</a></li>
+    <li><a class="dropdown-item" href="#">@Html.ActionLink("Delete entry", "Delete", new {id = Model.PasswordId})</a></li>
+  </ul>
+</div>
+
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+  <button type="button" class="btn btn-outline-primary">@Html.ActionLink("Back to List", "Index")</button>
+</div>
 
 
-<p>@Html.ActionLink("Back to List", "Index")</p>
-<p>@Html.ActionLink("Edit entry", "Edit", new {id = Model.PasswordId})</p>
-<p>@Html.ActionLink("Delete entry", "Delete", new {id = Model.PasswordId})</p>
+<p></p>
+<p></p>
+<p></p>

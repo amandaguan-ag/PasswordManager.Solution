@@ -77,25 +77,32 @@ namespace PasswordManager.Controllers
             return View(thisPassword);
         }
 
-        public ActionResult Edit(int id)
+public ActionResult Edit(int id)
         {
             Password thisPassword = _db.Passwords.FirstOrDefault(password => password.PasswordId == id);
             return View(thisPassword);
         }
-
-        [HttpPost]
-        public ActionResult Edit(Password password)
-        {
-            _db.Passwords.Update(password);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Delete(int id)
-        {
-            Password thisPassword = _db.Passwords.FirstOrDefault(password => password.PasswordId == id);
-            return View(thisPassword);
-        }
+        
+[HttpPost]
+public async Task<ActionResult> Edit(Password password)
+{
+    var userId = _userManager.GetUserId(User);
+    var passwordToUpdate = _db.Passwords.FirstOrDefault(p => p.PasswordId == password.PasswordId);
+    if(passwordToUpdate == null) 
+    {
+        // Handle password not found case
+        return View(password);
+    }
+    passwordToUpdate.UserId = userId; // Added this line
+    passwordToUpdate.Site = password.Site;
+    passwordToUpdate.SiteUsername = password.SiteUsername;
+    passwordToUpdate.SiteEmail = password.SiteEmail;
+    passwordToUpdate.SitePassword = password.SitePassword;
+    // other properties you wish to update
+    _db.Update(passwordToUpdate);
+    await _db.SaveChangesAsync();
+    return RedirectToAction("Index");
+}
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)

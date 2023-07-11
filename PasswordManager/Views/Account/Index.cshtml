@@ -1,22 +1,32 @@
 @{
   Layout = "_Layout";
 }
-<hr />
-@if (User.Identity.IsAuthenticated)
-{
-  <p>Hello @User.Identity.Name!</p>
-  @using (Html.BeginForm("LogOff", "Account"))
-  {
-    <input type="submit" class="btn btn-primary" value="Log out" />
-    <p>@Html.ActionLink("Home", "Index", "Passwords")</p>
-  }
-}
-else
-{
-  <div class="loginIndexBtn">
-    <p class="loginIndexBtnSel">@Html.ActionLink("Home", "Index", "Passwords")</p>
-    <p class="loginIndexBtnSel">@Html.ActionLink("Register", "Register")</p>
-    <p class="loginIndexBtnSel">@Html.ActionLink("Log in", "Login")</p>
 
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body text-center">
+          @if (User.Identity.IsAuthenticated)
+          {
+            <p class="card-text">Hello @User.Identity.Name!</p>
+            @using (Html.BeginForm("LogOff", "Account"))
+            {
+              <input type="submit" class="btn btn-primary mb-3" value="Log out" />
+              <br /> <!-- Add a line break to create space between the buttons -->
+              @Html.ActionLink("Home", "Index", "Passwords", null, new { @class = "btn btn-primary" })
+            }
+          }
+          else
+          {
+            <div class="btn-group-vertical w-100">
+              @Html.ActionLink("Home", "Index", "Passwords", new { }, new { @class = "btn btn-primary mb-2 mt-2" })
+              @Html.ActionLink("Register", "Register", null, new { }, new { @class = "btn btn-primary mb-2" })
+              @Html.ActionLink("Log in", "Login", null, new { }, new { @class = "btn btn-primary mb-2" })
+            </div>
+          }
+        </div>
+      </div>
+    </div>
   </div>
-}
+</div>

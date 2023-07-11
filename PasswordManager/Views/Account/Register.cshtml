@@ -1,27 +1,67 @@
+@{
+Layout = "_Layout";
+}
+
 @using PasswordManager.ViewModels
 
 @model RegisterViewModel
 
-<h2>Secret Squirrel</h2>
-<hr />
-<h3>Create Account</h3>
-@if(!ViewData.ModelState.IsValid) 
-{
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
-}
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Secret Squirrel</h2>
+          <hr />
+          <h3>Create Account</h3>
+        </div>
+        <div class="card-body">
+          @if(!ViewData.ModelState.IsValid)
+          {
+          <div class="alert alert-danger" role="alert">
+            @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:")
+          </div>
+          }
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-  @Html.LabelFor(user => user.Email)
-  @Html.TextBoxFor(user=> user.Email)
+          @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+          {
+          <div class="form-group">
+            <div class="col-12">
+              @Html.LabelFor(user => user.Email, new { @class = "control-label" })
+            </div>
+            <div class="col-12">
+              @Html.TextBoxFor(user=> user.Email, new { @class = "form-control mt-2" })
+            </div>
+          </div>
 
-  @Html.LabelFor(user=> user.Password)
-  @Html.EditorFor(user=> user.Password)
+          <div class="form-group">
+            <div class="col-12">
+              @Html.LabelFor(user=> user.Password, new { @class = "control-label" })
+            </div>
+            <div class="col-12">
+              @Html.EditorFor(user=> user.Password, new { @class = "form-control mt-2" })
+            </div>
 
-  @Html.LabelFor(user=> user.ConfirmPassword)
-  @Html.EditorFor(user=> user.ConfirmPassword)
+          </div>
 
-  <input type="submit" value="Register" />
-}
+          <div class="form-group">
+            <div class="col-12">
+              @Html.LabelFor(user=> user.ConfirmPassword, new { @class = "control-label" })
+            </div>
+            <div class="col-12">
+              @Html.EditorFor(user=> user.ConfirmPassword, new { @class = "form-control mt-2" })
+            </div>
+          </div>
 
-<p>@Html.ActionLink("Back to accounts page", "Index")</p>
+          <div class="form-group">
+            <input type="submit" value="Register" class="btn btn-primary" />
+          </div>
+          }
+        </div>
+        <div class="card-footer text-center">
+          <p>@Html.ActionLink("Back to accounts page", "Index", null, new { @class = "btn btn-link" })</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
