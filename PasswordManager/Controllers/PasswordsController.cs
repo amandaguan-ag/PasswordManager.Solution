@@ -80,10 +80,27 @@ namespace PasswordManager.Controllers
 public ActionResult Edit(int id)
         {
             Password thisPassword = _db.Passwords.FirstOrDefault(password => password.PasswordId == id);
+                Password password = _db.Passwords.Find(id);
+    if (password == null)
+    {
+        return NotFound();
+    }
             return View(thisPassword);
         }
-        
-[HttpPost]
+      
+// [HttpGet]
+// public IActionResult Edit(int passwordId)
+// {
+//     Password password = _db.Passwords.Find(passwordId);
+//     if (password == null)
+//     {
+//         return NotFound();
+//     }
+
+//     return View(password);
+// }
+
+[HttpPost, ActionName("Edit")]
 public async Task<ActionResult> Edit(Password password)
 {
     var userId = _userManager.GetUserId(User);
@@ -103,6 +120,12 @@ public async Task<ActionResult> Edit(Password password)
     await _db.SaveChangesAsync();
     return RedirectToAction("Index");
 }
+
+        public ActionResult Delete(int id)
+        {
+            Password thisPassword = _db.Passwords.FirstOrDefault(password => password.PasswordId == id);
+            return View(thisPassword);
+        }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
