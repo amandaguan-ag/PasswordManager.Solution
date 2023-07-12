@@ -54,7 +54,7 @@ Users will be able to create, edit, delete, and maintain main account and stored
 }
 ```
 
-#### To add a migration and development server:_
+#### To add a migration and development server:
 * _Navigate to 'PasswordManager.Solution' in your command line_
 * _From there navigate to 'PasswordManager'_
 * _Run the command "dotnet build"_
