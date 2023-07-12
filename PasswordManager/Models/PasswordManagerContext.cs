@@ -15,8 +15,7 @@ namespace PasswordManager.Models
 
             builder.Entity<ApplicationUser>()
                 .HasMany(u => u.Passwords)
-                .WithOne(p => p.User)
-                .HasForeignKey(p => p.UserId);
+                .WithOne(p => p.User);
         }
     }
 }
