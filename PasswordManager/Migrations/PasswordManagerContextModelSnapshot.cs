@@ -230,6 +230,7 @@ namespace PasswordManager.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("PasswordId");
@@ -294,7 +295,9 @@ namespace PasswordManager.Migrations
                 {
                     b.HasOne("PasswordManager.Models.ApplicationUser", "User")
                         .WithMany("Passwords")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
