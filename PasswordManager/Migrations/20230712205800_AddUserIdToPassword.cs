@@ -4,7 +4,7 @@
 
 namespace PasswordManager.Migrations
 {
-    public partial class onemanyrelationship : Migration
+    public partial class AddUserIdToPassword : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

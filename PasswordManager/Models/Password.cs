@@ -7,7 +7,6 @@ namespace PasswordManager.Models
     {
         public int PasswordId { get; set; }
 
-        [NotMapped]
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]

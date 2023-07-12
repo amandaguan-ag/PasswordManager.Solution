@@ -11,8 +11,8 @@ using PasswordManager.Models;
 namespace PasswordManager.Migrations
 {
     [DbContext(typeof(PasswordManagerContext))]
-    [Migration("20230709173541_one-many-relationship")]
-    partial class onemanyrelationship
+    [Migration("20230712205800_AddUserIdToPassword")]
+    partial class AddUserIdToPassword
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,7 +232,6 @@ namespace PasswordManager.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("PasswordId");
@@ -297,9 +296,7 @@ namespace PasswordManager.Migrations
                 {
                     b.HasOne("PasswordManager.Models.ApplicationUser", "User")
                         .WithMany("Passwords")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
