@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PasswordManager.Models
 {
@@ -6,6 +7,9 @@ namespace PasswordManager.Models
     {
         public int PasswordId { get; set; }
 
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
 
         public string Site { get; set; }
