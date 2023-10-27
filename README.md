@@ -4,7 +4,7 @@
 
 #### A Highly Secure, Reliable, and User-friendly Password Management Application
 
-Secret Squirrel is a password management application designed to provide users with a secure platform to store and manage sensitive information, such as email credentials and passwords. With a direct database relationship, the application offers users the capability to create, edit, delete, and maintain their main accounts as well as the stored information.
+Secret Squirrel is a password management application designed to provide users with a secure platform to store and manage passwords. With a direct database relationship, the application offers users the capability to create, edit, delete, and maintain their main accounts as well as the stored information.
 
 ## Key Features
 
