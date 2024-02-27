@@ -31,7 +31,7 @@ Secret Squirrel is a password management application designed to provide users w
 
 1. Clone this repository to your desktop:
     ```
-    $ git clone https://github.com/BillyLee1/PasswordManager.Solution.git
+    $ git clone https://github.com/amandaguan-ag/PasswordManager.Solution
     ```
 2. Navigate into the 'PasswordManager' directory and run the following commands:
     ```
@@ -40,7 +40,13 @@ Secret Squirrel is a password management application designed to provide users w
     $ dotnet watch run
     ```
 3. In the production directory, create a new file called `appsettings.json` and input your MySQL username and password. 
-
+    ```
+    {
+        "ConnectionStrings": {
+            "DefaultConnection": "Server=[SERVER];Port=[PORT];database=[database];uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
+        }
+    }
+    ```
 #### To add a migration and development server:
 1. Navigate to 'PasswordManager.Solution' in your command line.
 2. Run the following commands to add migration and update the database:
